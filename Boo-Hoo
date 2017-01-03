@@ -1,0 +1,9 @@
+// create boolean function to get true or false return
+function booWho(truefalse) {
+  return typeof truefalse === 'boolean';
+}
+
+
+booWho(NaN); // false
+booWho(1, 2, 3); // false
+booWho(true); // true
