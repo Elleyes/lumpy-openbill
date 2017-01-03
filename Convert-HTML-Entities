@@ -1,0 +1,37 @@
+// A mapping of characters to their respective HTML entities.
+// We put this outside of the function as its global static data.
+// i.e. we don't need the function to define it each time its run,
+// rather we only need to define it once, and function can re-use
+// that data each time its run.
+var htmlEntities = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "'": "&apos;",
+  '"': "&quot;"
+};
+
+
+// Replace each character with its HTML entity
+function convertHTML(input) {
+
+  var output = input; // We'll change the output in-place.
+
+  for ( character in htmlEntities ) { // foreach key (character)
+
+    var entity = htmlEntities[character]; // the html entitie, or that characters "replacement"
+
+    // This is how we  define a regular expression that contains a variable value.
+    var re = new RegExp(character, 'g');
+
+    // replace will exchange one for the other, anywhere in the string.
+    var modifiedOutput = output.replace(re, entity);  
+
+    // But since strings are immutable, we must save the results.
+    output = modifiedOutput;
+  }
+
+  return output;
+}
+
+convertHTML("Dolce & Gabbana");
