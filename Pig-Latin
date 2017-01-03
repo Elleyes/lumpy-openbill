@@ -1,0 +1,29 @@
+function translatePigLatin(english) {
+  
+  // Create variables to be used
+  var pigLatin = '';
+  var regex = /[aeiou]/ig; // matches all vowels, modifier i -> case insensitive, modifier g -> anywhere in the string.
+
+  // Check if the first character is a vowel
+  if (english[0].match(regex)) {
+    
+    // It is, so just add 'way' to the end.
+    pigLatin = english + 'way';
+  
+  } else {
+    // Then the first character is a consonant
+
+    // Find how many consecutive consonants before the first vowel.
+    var vowelIndex = english.indexOf(english.match(regex)[0]);
+    
+    var prefix = english.substr(0, vowelIndex); // the consonants from the start of the string
+    
+    var restOfWord = english.substr(vowelIndex); // the first vowel and everything after it.
+    
+    pigLatin = restOfWord + prefix + 'ay'; // puts pig latin parts together
+  }
+
+  return pigLatin;
+}
+
+translatePigLatin("blah"); // ahblay
