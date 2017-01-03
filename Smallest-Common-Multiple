@@ -1,0 +1,40 @@
+function smallestCommons(arr) {
+  
+  var first = arr[0];
+  var second = arr[1];
+  
+  var min = Math.min(first, second);
+  var max = Math.max(first, second);
+  
+
+  var candidate = max; // start here as lowest possible answer
+
+  // grow a number (candidate) until we find the right answer
+  while ( true ) {
+
+    
+    // Check if the candidate divisible by all numbers in between min and max
+    var allPassed = true;
+    for ( var x = min; x <= max; x++ ) {
+      if ( (candidate % x) === 0 ) {
+        // candidate is divisible by x
+        // keep trying numbers
+      } else {
+        // candidate not divisible by x
+        // this answer won't work
+        allPassed = false;
+      }
+    }
+    
+    // Answer found?
+    if ( allPassed ) {
+      // stop here with working answer
+      return candidate;
+    }
+
+    // try next number
+    candidate++;
+  }
+}
+smallestCommons([1, 5]);
+smallestCommons([23, 18]);
