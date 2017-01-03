@@ -1,0 +1,28 @@
+// Find all objects in collection that are a superset of source
+function whatIsInAName(collection, source) {
+  
+  // Get a list of all the keys in source.
+  var srcKeys = Object.keys(source);
+
+  // filter the collection down to only those candidates that match.
+  var selected = collection.filter(function (candidate) {
+    
+    // foreach key in source
+    for ( var i = 0; i < srcKeys.length; i++ ) {
+      var key = srcKeys[i];
+      
+      if ( candidate[key] !== source[key] ) {
+        // Both objects have different values for this key, move onto the next candidate.
+        return false;
+      }
+    }
+    
+    // Went through all keys, and they matched. Keep this candidate.
+    return true;
+  });
+    
+  return selected;
+}
+
+// test here
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
