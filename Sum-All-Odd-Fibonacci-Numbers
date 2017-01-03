@@ -1,0 +1,107 @@
+// This is pretty dense
+// The outermost or top-level function just calls the other in sequence.
+function sumFibs(num) {  
+ 
+  // gather the list of fibanocci numbers
+  var fibs = fibonacci(num);
+ 
+  // reduce this list of numbers to just the odd ones.
+  var oddFibs = selectOdd(fibs);
+  
+  // sum that list of odd numbers.
+  var sum = sumNumbers(oddFibs);
+  
+  // return the final sum.
+  return sum;
+}
+
+function sumNumbers(numList) {
+  var total = 0;
+  for ( var i = 0; i < numList.length; i++ ) {
+    total += numList[i];
+  }
+  return total;
+}
+
+// isOdd just returns if the given number is odd or not.
+// its just a conditional that uses the modulo (remainder).
+// Odd numbers have a remainder when divided by 2.
+function isOdd(num) {
+  return ( num % 2 ) == 1;
+}
+
+// Given a list of numbers, selectOdd() returns only the odd numbers from the list.
+function selectOdd(numList) {
+  
+  var odds = []; // Well gather our results here.
+
+  // Loop over all the numbers in the input list, one at a time.
+  for ( var i = 0; i <= numList.length; i++ ) {
+    
+    var num = numList[i]; // Here is the said number.
+
+    // Only keep it if its odd, so test for that.
+    if ( isOdd(num) ) {
+      
+      // This number is odd, so keep it, 
+      // by sticking it to the end of the result list.
+      odds.push(num);
+
+    }
+  }
+  
+  return odds;
+}
+
+// Given a number (limit), fibonacci() will return the list of fibonaci numbers less than that given number.
+function fibonacci(limit) {
+  
+  // Gather the results in fibList. 
+  // Initialize it with the start of a fibonacci sequence.
+  // Fibonacci sequences really start with a 1.
+  // But here start this one with a 0, so the code works right.
+  // Should be harmless to do so.
+  var fibList = [0];
+  
+  // The next number is a fibonacci sequence, after the 0, is a 1.
+  // Use this as a temporary variable as we build new numbers.
+  var acc = 1;
+ 
+  // While loop, creating new fibonnaci numbers until accumulate the ones we need.
+  while ( acc <= limit ) { // Done when we hit the limit.
+    
+    // First save the last number we created.
+    // This number (in acc) is less than the limit so it's good to keep.
+    fibList.push(acc);
+    
+    // Now create the next number in the sequence.
+    
+    // The last number in the sequence so far.
+    var lastNumber = fibList[fibList.length - 1];
+    
+    // the previous to last number in the sequence so far.
+    var prevLastNumber = fibList[fibList.length - 2];
+    
+    // We add those 2 numbers together to create the next number in the squence.
+    acc = lastNumber + prevLastNumber; 
+  }
+  
+  return fibList;
+}
+
+
+
+// Test each function individually.
+// Unit testing: test one unit of code at a time.
+
+isOdd(1); // true
+isOdd(2); // false
+isOdd(3); // true
+
+sumNumbers([1,2,3]); // 6
+
+selectOdd([1,2,3]); // [1,3]
+
+fibonacci(6); // [0, 1, 1, 2, 3, 5] // 6 is not in the sequence.
+
+sumFibs(6); // 10
