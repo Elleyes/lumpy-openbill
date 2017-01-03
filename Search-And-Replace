@@ -1,0 +1,20 @@
+// Replace every occurance of "before" with "after"
+function myReplace(input, before, after) {
+  
+  // The following stanza capitalizes the first letter of the replacement, if a capital is necessary
+  
+  // Find index where before is on string
+  var index = input.indexOf(before);
+  // Check to see if the first letter is uppercase or not
+  if (input[index] === input[index].toUpperCase()) {
+    // Change the after word to be capitalized before we use it.
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+  }
+  
+  // Now replace the original str with the edited one.
+  var output = input.replace(before, after);
+
+  return output;
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
