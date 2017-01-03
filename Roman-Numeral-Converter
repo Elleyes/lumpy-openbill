@@ -1,0 +1,18 @@
+function convertToRoman(decimal) {
+  // Create an empty string for the result  
+  var result = [];
+  // list of all relevant numbers and roman numerals
+  var numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+        roman = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+  // Loop through the numbers while the number is greater than the number, keep looping
+  numbers.map((number, i) => { 
+     while (decimal >= number) {
+     // subtract from decimal, add to roman numerals as you go
+       result += roman[i];
+       decimal -= number;
+     }
+    });
+  return result;
+}
+
+convertToRoman(45); // XLV
