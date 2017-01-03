@@ -1,0 +1,32 @@
+// create function diffArray with two arguments: array 1, array 2 
+function diffArray(arr1, arr2) {
+  /* produce a third array called difference to put unique stuff found in one array, but not the other*/
+  var difference = [];
+  
+  // we're looping to find each element from the first and last item in array 1  
+  for ( var index = 0; index < arr1.length; index++ ) {
+    
+  // we're taking each element found in array 1 and placing each into the variable called item  
+    // arr1[0]  // first loop
+    // arr1[1]  // second loop
+    // arr1[2]  // third loop
+    // arr1[index]  // and so on for all loops
+    var item = arr1[index];
+    
+    // we're looking in array 2 for the "item" found in line 14, if it is NOT in the 2nd array
+    // if it is not in the 2nd array, then line 19, which is push this array 1 item to difference
+    if ( arr2.indexOf(item) == -1 ) { 
+      difference.push(item);
+    }
+  }
+ 
+  // swap array1 and array 2 above lines 7 through 19: to find the different element to be found from array 2
+  for ( var index = 0; index < arr2.length; index++ ) {
+    var item = arr2[index];
+    if ( arr1.indexOf(item) == -1 ) {
+      difference.push(item);
+    }
+  }
+  // return all the different elements found for lines 19 and 27.
+  return difference;
+}
