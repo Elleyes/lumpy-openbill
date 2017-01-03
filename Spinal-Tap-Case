@@ -1,0 +1,29 @@
+/* 
+
+1. replace any non letters with a dash.
+2. add a dash between any lower/upper case boundary
+3. lowercase all letters.
+
+*/
+function spinalCase(input) {
+  
+  var output = input; // We'll change the output in-place
+  
+  // 1. replace any non-letters with dashes.
+  // The regex matches anything that isn't a letter.
+  // i.g "a_b?c" becomes "a-b-c"
+  output = output.replace(/[^a-zA-Z]+/g, '-');
+  
+  // 2. add a dash between any small letter and big letter
+  // i.g  "aA" becomes "a-A"
+  // The regex matches a small letter, then a big letter after it.
+  // The two sets of parens capture the matches letters, and sets them to $1 and $2, respectively. So that we can use them in the replacement string. 
+  //
+  output = output.replace(/([a-z])([A-Z])/g, "$1-$2");
+
+  // 3. change all letters to lowercase, now, and return it.
+  // i.e. "a-B-c-D" becomes "a-b-c-d"
+  return output.toLowerCase();
+}
+
+spinalCase('thisIsSpinalTap');
