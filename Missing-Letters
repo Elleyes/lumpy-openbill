@@ -1,0 +1,19 @@
+function fearNotLetter(str) {
+
+  for(var i = 0; i < str.length; i++) {
+    // code of current character
+    var code = str.charCodeAt(i);
+
+    // if current character !== to first character + no of iteration   
+    //so the character has been escaped
+    if (code !== str.charCodeAt(0) + i) {
+
+      //current character escaped one character, find previous & return.
+      return String.fromCharCode(code - 1);
+    }  
+  }
+  return undefined;
+}
+
+// test
+fearNotLetter("abce");
