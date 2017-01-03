@@ -1,0 +1,24 @@
+// a "truth test" function that returns a boolean.
+// Define and pass functions around
+// as like they're regular values
+// instead of calling them (with arguments).
+// Call later, with any arguments you like.
+
+function findElement(arr, truthFunc) {
+  
+  // for each element in the array
+  for ( var i = 0; i < arr.length; i++) {
+    
+    var element = arr[i]; // here is the element in the array.
+    
+    // If we give this element to the "truth-function", does it pass?
+    if ( truthFunc(element) ) {
+      // if it does, then exit the function here.
+      return element;
+    }
+    
+  }
+}
+
+// findElement([1, 2, 3, 4], function(num){ return num % 2 === 0; });
+findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; });
