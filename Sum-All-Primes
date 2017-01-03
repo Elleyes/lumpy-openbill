@@ -1,0 +1,78 @@
+// isPrime() detects if a number is prime.
+// Divide a number by all numbers smaller than it.
+// And if only 2 of these smaller numbers leave no remainder, then its prime.
+function isPrime(num) {
+  var totalDivisors = 0; // count of the number of valid divisors found
+  
+  // loop over all numbers lesser than "num"
+  for ( var i = 1; i <= num; i++ ) {
+    
+    // does it give no remainder?
+    if ( ( num % i ) === 0 ) {
+      
+      // It does, so count this as a divisor.
+      totalDivisors++;
+    }
+  }
+  
+  // A prime number has only 2 divisors.
+  // These divisors are 1, and the number itself.
+  return totalDivisors == 2;
+}
+
+// primes() generates a list of primes less than "num"
+function primes(num) {
+  
+  var primeList = []; // Collect the primes into this.
+
+  // Loop over all numbers less than "num", and test each for prime.
+  for ( var i = 2; i <=num; i++ ) {
+    
+    // is it a prime number?
+    if ( isPrime(i) ) {
+      
+      // it is... lets keep it.
+      primeList.push(i);
+    }
+  }
+  
+  return primeList;
+}
+
+// sumList() sums a list of numbers. 
+// This has nothing to do with prime numbers, it would sum any list of numbers.
+function sumList(numList) {
+  
+  var total = 0; // the accumulator
+  
+  // for each number in the list.
+  for ( var i = 0; i < numList.length; i++ ) {
+    
+    // add it to the running total.
+    total += numList[i];
+  }
+  
+  return total;
+}
+
+// sumPrimes() uses all the function above to generate a list of primes less than "num" and then sum them together into one number.
+function sumPrimes(num) {
+  
+  // generate a list of primes that are less than "num"
+  var primeList = primes(num);
+  
+  // sum that list together.
+  var sum = sumList(primeList);
+  
+  return sum;
+}
+
+isPrime(2); // true
+isPrime(3); // true
+isPrime(4); // false
+
+primes(4); // [2,3]
+
+sumList([1,2,3]); // 6
+
+sumPrimes(10); // 17
