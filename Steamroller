@@ -1,0 +1,22 @@
+function steamrollArray(arr) {
+  var flattenedArray = [];
+
+  // Create function that adds an element if it is not an array.
+  // If it is an array, loop through, use recursively on array.
+  var flatten = function(arg) {
+    if (!Array.isArray(arg)) {
+      flattenedArray.push(arg);
+    } else {
+      for (var a in arg) {
+        flatten(arg[a]);
+      }
+    }
+  };
+
+  // Call function on each element in the array
+  arr.forEach(flatten);
+  return flattenedArray;
+}
+
+
+steamrollArray([1, [2], [3, [[4]]]]);
